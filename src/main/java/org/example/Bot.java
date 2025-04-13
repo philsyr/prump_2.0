@@ -83,7 +83,9 @@ public class Bot extends TelegramLongPollingBot {
     public String getBotUsername() {
         return "cu_algo_bot";
     }
-
+    // REMOVED_TELEGRAM_TOKEN - prod
+    // REMOVED_TELEGRAM_TOKEN -local for tests
+    // плохая практика лучше так не делать а забить в .env
     @Override
     public String getBotToken() {
         return "REMOVED_TELEGRAM_TOKEN";
