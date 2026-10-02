@@ -1,0 +1,30 @@
+services:
+  bot:
+    build: .
+    environment:
+      BOT_TOKEN: ${BOT_TOKEN:?Set BOT_TOKEN in your local .env file}
+      BOT_USERNAME: ${BOT_USERNAME:?Set BOT_USERNAME in your local .env file}
+      DB_URL: jdbc:postgresql://db:5432/prump
+      DB_USERNAME: ${DB_USERNAME:-prump}
+      DB_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in your local .env file}
+      TZ: ${TZ:-Europe/Moscow}
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: prump
+      POSTGRES_USER: ${DB_USERNAME:-prump}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in your local .env file}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", 'pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+volumes:
+  db-data:

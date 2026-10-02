@@ -1,0 +1,12 @@
+.git
+.github
+.idea
+.vscode
+.env
+.env.*
+target
+*.log
+dependency-reduced-pom.xml
+src/main/resources/config.properties
+src/main/resources/database.properties
+src/main/resources/application.properties

@@ -1,0 +1,20 @@
+# Build output
+/target/
+/dependency-reduced-pom.xml
+*.class
+*.jar
+
+# Local credentials and environment overrides
+.env
+.env.*
+!.env.example
+/src/main/resources/config.properties
+/src/main/resources/database.properties
+/src/main/resources/application.properties
+
+# Editors and operating system files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+*.log
